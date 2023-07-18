@@ -6,6 +6,10 @@ class Navbar extends React.Component {
         super();
 
     }
+    // handleSearch = () => {
+    //     const btn = document.getElementById('searchText');
+    //     console.log(btn.value);
+    // }
     render() {
         return (
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -26,10 +30,11 @@ class Navbar extends React.Component {
                             <li className="nav-item"><Link className="nav-link " to="/technology">Technology</Link></li>
 
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        {/* <form className="d-flex" role="search">
+                            <input id="searchText" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                            <div className="btn btn-outline-success" onClick={this.handleSearch}>Search</div>
+
+                        </form> */}
                     </div>
                 </div>
             </nav>

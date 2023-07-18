@@ -14,18 +14,26 @@ class News extends React.Component {
     }
     // componentDidMount run at the last when render method end
     async componentDidMount() {
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=1&pageSize=${this.props.page}&category=${this.props.category}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=1&pageSize=${this.props.page}&category=${this.props.category}`;
+        let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=1&category=${this.props.category}&pageSize=${this.props.page}`
+        // let url = `http://192.168.1.41:2000/api/news`
+        // var headers = { "Access-Control-Allow-Origin": "http://localhost:2000" }
         let data = await fetch(url);
+        // let parseData = await fetch(url);
+        console.log(data);
         let parseData = await data.json();
+        console.log(parseData);
         this.setState({
             article: parseData.articles,
             totalResult: parseData.totalResults
         })
-        console.log(parseData);
+
 
     }
     handlePrevClick = async () => {
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=${this.state.page - 1}&pageSize=${this.props.page}&category=${this.props.category}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page - 1}&pageSize=${this.props.page}&category=${this.props.category}`;
+        let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=${this.state.page - 1}&category=${this.props.category}&pageSize=${this.props.page}`
+        // let url = `http://192.168.1.41:2000/api/news`
         let data = await fetch(url);
         let parseData = await data.json();
         this.setState({
@@ -37,7 +45,9 @@ class News extends React.Component {
     }
     handleNextClick = async () => {
         if (Math.ceil(this.state.totalResult / this.props.page) > this.state.page) {
-            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=${this.state.page + 1}&pageSize=${this.props.page}&category=${this.props.category}`;
+            // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page + 1}&pageSize=${this.props.page}&category=${this.props.category}`;
+            let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=${this.state.page + 1}&category=${this.props.category}&pageSize=${this.props.page}`
+            // let url = `http://192.168.1.41:2000/api/news`
             let data = await fetch(url);
             let parseData = await data.json();
             this.setState({
