@@ -4,7 +4,6 @@ class Contentbox extends React.Component {
     render() {
         let { title, imgurl, desc, url, author, time } = this.props;
         return (
-
             <div className="card my-3 " style={{ width: '18rem' }}>
                 <img src={imgurl} className="card-img-top" alt="..." />
                 <div className="card-body">
