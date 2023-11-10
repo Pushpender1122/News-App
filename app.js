@@ -1,53 +1,56 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const fetch = require('node-fetch');
+const axios = require('axios');
+
 app.use(express.json());
 app.use(cors());
-const port = process.env.PORT || 4500
+
+const port = process.env.PORT || 4500;
+
+async function fetchData(country, page, category, pageSize, apiKey) {
+    let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${apiKey}&page=${page}&pageSize=${pageSize}&category=${category}`;
+
+    try {
+        let response = await axios.get(url);
+        let parseData = response.data;
+        return parseData;
+    } catch (error) {
+        console.error('Error:', error.message);
+        return { status: 'error' };
+    }
+}
+
 app.get('/api/news:?', async (req, res) => {
-    console.log(req.query)
-    const { country, page, category, pageSize } = req.query
-    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=1&pageSize=${this.props.page}&category=${this.props.category}`;
-    // let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=0e1f6e301b5643968dc59fbadd36a7fd&page=1&pageSize=5&category=technology`;
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=0e1f6e301b5643968dc59fbadd36a7fd&page=${page}&pageSize=${pageSize}&category=${category}`;
-    var data = await fetch(url);
-    var parseData = await data.json();
-    console.log(parseData.status)
-    if (parseData.status == 'error') {
-        let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=${page}&pageSize=${pageSize}&category=${category}`;
-        data = await fetch(url);
-        parseData = await data.json();
-        if (parseData.status == 'error') {
-            let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=adc31757ac114b1a921f8c12fa096462&page=${page}&pageSize=${pageSize}&category=${category}`;
-            data = await fetch(url);
-            parseData = await data.json();
-            console.log(parseData.status)
-            if (parseData.status == 'error') {
-                let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=07605f183c3a4262a157a6f52ae8038f&page=${page}&pageSize=${pageSize}&category=${category}`;
-                data = await fetch(url);
-                parseData = await data.json();
-                console.log(parseData.status)
-                if (parseData.status == 'error') {
-                    let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=5e78d1e9e8524f509d19f6cf96ac6597&page=${page}&pageSize=${pageSize}&category=${category}`;
-                    data = await fetch(url);
-                    parseData = await data.json();
-                    console.log(parseData.status)
-                }
-            }
+    console.log(req.query);
+    const { country, page, category, pageSize } = req.query;
+
+    const apiKeys = [
+        '0e1f6e301b5643968dc59fbadd36a7fd',
+        'dd319a7bb59b48309fe6e691056a7750',
+        'adc31757ac114b1a921f8c12fa096462',
+        '07605f183c3a4262a157a6f52ae8038f',
+        '5e78d1e9e8524f509d19f6cf96ac6597'
+    ];
+
+    for (let apiKey of apiKeys) {
+        let parseData = await fetchData(country, page, category, pageSize, apiKey);
+
+        if (parseData.status !== 'error') {
+            res.send(parseData);
+            return;
         }
     }
-    // console.log(parseData);
-    console.log('data');
-    // res.send(parseData);
-    res.send(parseData);
 
-})
+    // If all attempts fail, send an error response
+    res.status(500).send({ error: 'Unable to fetch data' });
+});
+
 app.get('/', (req, res) => {
     console.log('data');
     res.send('test');
-})
+});
 
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);
-})
+});

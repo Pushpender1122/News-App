@@ -1,0 +1,47 @@
+[33mcommit 52ab74a0142bd915178e3ae2ea2c4babf40229bf[m[33m ([m[1;36mHEAD -> [m[1;32mBackend[m[33m)[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Fri Nov 10 15:16:29 2023 +0530
+
+    Add azios
+
+[33mcommit c5a7a276f2a3900ecfd356cb0ae8c7bb5210990a[m[33m ([m[1;31morigin/Backend[m[33m)[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Fri Nov 10 15:03:59 2023 +0530
+
+    Add fatch
+
+[33mcommit b5a64e079f6dd47c7676d8de9aa7ca0a519afc09[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Fri Nov 10 14:42:03 2023 +0530
+
+    Fix
+
+[33mcommit 7013baa31b560accf64231e76f12d072d48b63f2[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Fri Nov 10 14:36:19 2023 +0530
+
+    backend setup
+
+[33mcommit 3cb17832c54d561f51b9480dee549dc223930f4a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Thu Jul 20 14:55:03 2023 +0530
+
+    Added infinite scroll and loading bar
+
+[33mcommit 704c17c6f9c0cfab85117b4daa89f79e3b66caad[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Tue Jul 18 18:10:35 2023 +0530
+
+    backend added
+
+[33mcommit 3be1c3e603d7116b744fa236cf8a1b83c7af9a54[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Mon Jul 17 14:30:46 2023 +0530
+
+    App ready
+
+[33mcommit 4d5438b92e81613ddc92ce5e9ff1519e3bd6b4b1[m
+Author: Pushpender <Pushpenderjangra2005@gmail.com>
+Date:   Sun Jul 16 21:27:28 2023 +0530
+
+    Initialize project using Create React App
