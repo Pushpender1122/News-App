@@ -17,7 +17,24 @@ app.get('/api/news:?', async (req, res) => {
         let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=dd319a7bb59b48309fe6e691056a7750&page=${page}&pageSize=${pageSize}&category=${category}`;
         data = await fetch(url);
         parseData = await data.json();
-        console.log(parseData.status)
+        if (parseData.status == 'error') {
+            let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=adc31757ac114b1a921f8c12fa096462&page=${page}&pageSize=${pageSize}&category=${category}`;
+            data = await fetch(url);
+            parseData = await data.json();
+            console.log(parseData.status)
+            if (parseData.status == 'error') {
+                let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=07605f183c3a4262a157a6f52ae8038f&page=${page}&pageSize=${pageSize}&category=${category}`;
+                data = await fetch(url);
+                parseData = await data.json();
+                console.log(parseData.status)
+                if (parseData.status == 'error') {
+                    let url = `https://newsapi.org/v2/top-headlines?country=${country}&apiKey=5e78d1e9e8524f509d19f6cf96ac6597&page=${page}&pageSize=${pageSize}&category=${category}`;
+                    data = await fetch(url);
+                    parseData = await data.json();
+                    console.log(parseData.status)
+                }
+            }
+        }
     }
     // console.log(parseData);
     console.log('data');
