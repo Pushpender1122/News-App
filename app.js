@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+const port = process.env.PORT || 4500
 app.get('/api/news:?', async (req, res) => {
     console.log(req.query)
     const { country, page, category, pageSize } = req.query
@@ -47,6 +47,6 @@ app.get('/', (req, res) => {
     res.send('test');
 })
 
-app.listen(2000, '192.168.1.41', () => {
-    console.log('server is running');
+app.listen(port, () => {
+    console.log(`server is running on port ${port}`);
 })
