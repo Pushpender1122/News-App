@@ -10,7 +10,7 @@ class News extends React.Component {
         super();
         this.state = {
             article: [],
-            page: 1,
+            page: 2,
             totalResult: 0,
             loader: true,
             progress: 20
@@ -24,7 +24,8 @@ class News extends React.Component {
         this.setState({
             progress: 20
         })
-        let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=1&category=${this.props.category}&pageSize=${this.props.page}`
+        // let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=1&category=${this.props.category}&pageSize=${this.props.page}`
+        let url = `https://news-app-backend-5n7z.onrender.com/api/news?country=${this.props.country}&page=1&category=${this.props.category}&pageSize=${this.props.page}`
         // let url = `http://192.168.1.41:2000/api/news`
         // var headers = { "Access-Control-Allow-Origin": "http://localhost:2000" }
         let data = await fetch(url);
@@ -42,7 +43,8 @@ class News extends React.Component {
     }
     fetchMoreData = async () => {
         // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.api_key}&page=${this.state.page + 1}&pageSize=${this.props.page}&category=${this.props.category}`;
-        let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=${this.state.page + 1}&category=${this.props.category}&pageSize=${this.props.page}`
+        // let url = `http://192.168.1.41:2000/api/news?country=${this.props.country}&page=${this.state.page + 1}&category=${this.props.category}&pageSize=${this.props.page}`
+        let url = `https://news-app-backend-5n7z.onrender.com/api/news?country=${this.props.country}&page=${this.state.page}&category=${this.props.category}&pageSize=${this.props.page}`
         // let url = `http://192.168.1.41:2000/api/news`
         let data = await fetch(url);
         let parseData = await data.json();
@@ -74,8 +76,8 @@ class News extends React.Component {
                     <div className="d-flex justify-content-evenly flex-wrap ">
                         <div>  {this.state.loader ? <Loader /> : ''} </div>
 
-                        {this.state.article.map((element) => {
-                            return <div className="Content " key={element.url}>
+                        {this.state.article.map((element, id) => {
+                            return <div className="Content " key={id}>
                                 <Contentbox title={element.title ? element.title : ""} imgurl={element.urlToImage ? element.urlToImage : 'https://images.hindustantimes.com/tech/img/2023/07/16/1600x900/SPACE-ASTRONOMY-ASTEROID-0_1683132681194_1689477299600.jpg'} desc={element.description ? element.description : ""} url={element.url} author={element.author} time={element.publishedAt} />
                             </div >
                         })}
